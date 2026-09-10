@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Placeholder image">
+  <!--
+    GENERIC PLACEHOLDER GRAPHIC
+    Used all over the site anywhere a real photo is needed later.
+    You can safely delete this file once every <img> that points to it
+    has been swapped for a real project photo.
+  -->
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#d8b892"/>
+      <stop offset="100%" stop-color="#6b4530"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#g)"/>
+  <g opacity="0.55" fill="#faf6f0">
+    <circle cx="620" cy="150" r="55"/>
+    <path d="M0 460 L220 300 L360 400 L520 260 L800 460 L800 600 L0 600 Z"/>
+  </g>
+  <g font-family="Arial, sans-serif" text-anchor="middle" fill="#faf6f0">
+    <text x="400" y="500" font-size="34" font-weight="700">PHOTO PLACEHOLDER</text>
+    <text x="400" y="535" font-size="18" opacity="0.85">Replace with a real project photo</text>
+  </g>
+</svg>
