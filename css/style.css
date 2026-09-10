@@ -104,8 +104,8 @@ section { padding: 72px 0; }
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(250, 246, 240, 0.96);
-  backdrop-filter: blur(6px);
+  background: var(--color-bg); /* solid — avoids a sticky+backdrop-filter
+                                    ghosting bug on some Android browsers */
   border-bottom: 1px solid var(--color-border);
 }
 .header-inner {
@@ -178,8 +178,8 @@ section { padding: 72px 0; }
      `background` line below with, e.g.:
      background: linear-gradient(rgba(30,18,12,.55), rgba(30,18,12,.55)), url('images/hero-photo.jpg') center/cover; */
   background:
-    repeating-linear-gradient(100deg, rgba(255,255,255,0.03) 0 2px, transparent 2px 40px),
-    linear-gradient(135deg, #4a2c1c 0%, #6b4227 45%, #8a5a34 100%);
+    repeating-linear-gradient(95deg, rgba(255,255,255,0.07) 0 2px, transparent 2px 16px, rgba(0,0,0,0.08) 16px 18px, transparent 18px 42px),
+    linear-gradient(135deg, #3f2517 0%, #6b4227 45%, #8a5a34 100%);
   overflow: hidden;
 }
 .hero-badge {
@@ -467,10 +467,31 @@ section { padding: 72px 0; }
 }
 
 @media (max-width: 700px) {
-  .main-nav { position: fixed; inset: 72px 0 0 0; background: var(--color-bg); padding: 24px; transform: translateY(-110%); transition: transform .25s ease; z-index: 90; }
-  .main-nav.open { transform: translateY(0); }
-  .main-nav ul { flex-direction: column; align-items: flex-start; gap: 20px; }
   .nav-toggle { display: flex; }
+  .logo { font-size: 1.05rem; }               /* keeps header from crowding at ~375px */
+  .header-cta .btn-primary { display: none; } /* "Free Quote" button — hero/CTA sections already carry this CTA */
+
+  /* Hamburger dropdown menu, hidden below the header until toggled.
+     display:none (not just an off-screen transform) fully removes the
+     menu from paint AND the tab order while closed — no chance of it
+     rendering over the page beneath it or catching keyboard focus. */
+  .main-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--color-bg);
+    border-top: 1px solid var(--color-border);
+    box-shadow: var(--shadow-lg);
+    padding: 8px 24px 20px;
+    z-index: 5;
+  }
+  .main-nav.open { display: block; }
+  .main-nav ul { flex-direction: column; align-items: stretch; gap: 2px; }
+  .main-nav li { border-bottom: 1px solid var(--color-border); }
+  .main-nav li:last-child { border-bottom: none; }
+  .main-nav a { display: block; padding: 14px 4px; }
   .header-phone span.phone-text { display: none; }
   .services-grid { grid-template-columns: 1fr; }
   .gallery-preview-grid { grid-template-columns: 1fr; }
